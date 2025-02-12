@@ -1,0 +1,123 @@
+<aside
+  class="h-screen w-auto bg-gray-800 text-white transition-all duration-300 ease-in-out flex flex-col xl:pl-3 2xl:pl-10"
+  [ngClass]="{
+    'w-14': isCollapsed,
+    'w-56 sm:w-64 md:w-72 lg:w-auto': !isCollapsed
+  }"
+>
+  <!-- Botón para abrir/cerrar el sidebar -->
+  <div class="flex justify-end p-4">
+    <button
+      (click)="toggleCollapse()"
+      class="text-white focus:outline-none cursor-pointer"
+      aria-label="Toggle sidebar"
+    >
+      @if (isCollapsed) {
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M18 3a3 3 0 0 1 2.995 2.824L21 6v12a3 3 0 0 1-2.824 2.995L18 21H6a3 3 0 0 1-2.995-2.824L3 18V6a3 3 0 0 1 2.824-2.995L6 3zm-3 2H6a1 1 0 0 0-.993.883L5 6v12a1 1 0 0 0 .883.993L6 19h9zM9.613 9.21l.094.083l2 2a1 1 0 0 1 .083 1.32l-.083.094l-2 2a1 1 0 0 1-1.497-1.32l.083-.094L9.585 12l-1.292-1.293a1 1 0 0 1-.083-1.32l.083-.094a1 1 0 0 1 1.32-.083"/>
+        </svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M18 3a3 3 0 0 1 2.995 2.824L21 6v12a3 3 0 0 1-2.824 2.995L18 21H6a3 3 0 0 1-2.995-2.824L3 18V6a3 3 0 0 1 2.824-2.995L6 3zm-3 2H6a1 1 0 0 0-.993.883L5 6v12a1 1 0 0 0 .883.993L6 19h9zm-3.293 4.293a1 1 0 0 1 .083 1.32l-.083.094L10.415 12l1.292 1.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083l-2-2a1 1 0 0 1-.083-1.32l.083-.094l2-2a1 1 0 0 1 1.414 0"/>
+        </svg>
+      }
+    </button>
+  </div>
+
+  <!-- Contenido del sidebar -->
+  <div class="p-4 flex-1" *ngIf="!isCollapsed">
+    <!-- Mensaje de bienvenida -->
+    <div class="mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+      <p class="text-base sm:text-lg 2xl:text-2xl font-medium">
+        Hola {{ user }}, bienvenido
+      </p>
+    </div>
+
+    <!-- Opción "Administrador CVT" -->
+    <div class="mb-6">
+      <button
+        (click)="toggleAdminOptions()"
+        class="flex items-center w-full text-left focus:outline-none cursor-pointer"
+        aria-label="Toggle admin options"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48">
+          <path fill="#ffa000" d="M40 12H22l-4-4H8c-2.2 0-4 1.8-4 4v8h40v-4c0-2.2-1.8-4-4-4"/>
+          <path fill="#ffca28" d="M40 12H8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4"/>
+        </svg>
+        <span class="ml-3 text-base 2xl:text-lg font-medium underline">
+          Administrador CVT
+        </span>
+      </button>
+
+      <!-- Opciones desplegables de "Administrador CVT" -->
+      @if (showAdminOptions) {
+        <div class="ml-6 mt-1">
+            <a href="#" class="flex flex-row items-center justify-start hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+                <g fill="none" stroke-linejoin="round" stroke-width="4">
+                  <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                  <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                  <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+                </g>
+              </svg>
+              <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">
+                Nueva Aplicación
+              </p>            
+            </a>         
+          <a href="#" class="flex flex-row items-center hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+              <g fill="none" stroke-linejoin="round" stroke-width="4">
+                <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+              </g>
+            </svg>
+            <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">Nueva Transacción</p>
+          </a>
+          <a href="#" class="flex flex-row items-center hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+              <g fill="none" stroke-linejoin="round" stroke-width="4">
+                <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+              </g>
+            </svg>
+            <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">Nuevo Flujo CVT</p>
+          </a>
+        </div>
+      }
+    </div>
+
+    <!-- Opción "CVT" -->
+    <div class="mb-4">
+      <a [routerLink]="['/cvt']" class="flex items-center cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+            <rect width="40" height="32" x="4" y="8" fill="#2f88ff" stroke="#000" rx="2"/>
+            <path stroke="#fff" d="M32 25V32"/>
+            <path stroke="#fff" d="M24 16V32"/>
+            <path stroke="#fff" d="M16 20V32"/>
+          </g>
+        </svg>
+        <span class="ml-3 text-base 2xl:text-lg font-medium underline">CVT</span>
+      </a>
+    </div>
+    
+  </div>
+
+  <!-- Botón "Salir" en la parte inferior derecha -->
+  @if (!isCollapsed) {
+    <div class="p-4 flex justify-end items-center">
+      <button
+        (click)="logout()"
+        class="flex items-center text-white hover:text-red-500 cursor-pointer"
+        aria-label="Cerrar sesión"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h7v2H5v14h7v2zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5z"/>
+        </svg>
+        <span class="ml-2 text-base sm:text-lg 2xl:text-3xl">Salir</span>
+      </button>
+    </div>
+  }
+</aside>

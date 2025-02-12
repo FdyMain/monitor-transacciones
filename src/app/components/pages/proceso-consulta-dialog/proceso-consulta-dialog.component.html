@@ -1,0 +1,95 @@
+<div class="p-6 w-full flex flex-row">
+    <!-- Lista de Números de Cuenta -->
+    <div class="mb-6">
+        <h3 class="text-sm font-Roboto text-Blue_Midnight_900 2xl:text-base font-semibold mb-4">Números de Cuenta:</h3>
+        <div class="flex flex-col space-y-2">
+            <button
+                *ngFor="let cuenta of numerosCuenta"
+                (click)="seleccionarCuenta(cuenta)"
+                (keydown.enter)="seleccionarCuenta(cuenta)"
+                type="button"
+                class="w-32 cursor-pointer p-2 border rounded-lg hover:bg-gray-100 focus:ring focus:ring-blue-300"
+                [ngClass]="{'bg-blue-100': cuenta === cuentaSeleccionada}"
+            >
+                <div class="flex items-center space-x-2">
+                    <!-- Spinner -->
+                    <div
+                        class="w-5 h-5 rounded-full border-4 slow-spin"
+                        [ngClass]="{
+                            'border-orange-500': getSpinnerState(cuenta) === 'orange',
+                            'border-Green_Success_500': getSpinnerState(cuenta) === 'green',
+                            'border-red-700': getSpinnerState(cuenta) === 'red'
+                        }"
+                    ></div>
+                    
+                    <!-- Número de cuenta -->
+                    <span>{{ cuenta }}</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Diagrama de Flujo (solo se muestra si hay una cuenta seleccionada) -->
+    <div *ngIf="cuentaSeleccionada !== null" class="flex flex-row items-center space-x-4">
+        <!-- Columna 1: Bloque 1 -->
+        <div class="flex flex-col">
+            <div
+                class="p-4 border rounded-lg w-64"
+                [ngClass]="{
+                    'bg-orange-200': bloques[0]?.estado === 'pendiente',
+                    'bg-green-200': bloques[0]?.estado === 'completado',
+                    'bg-red-200': bloques[0]?.estado === 'error'
+                }"
+            >
+                <h4 class="font-semibold">{{ bloques[0]?.nombre }}</h4>
+                <p class="text-sm">{{ bloques[0]?.mensaje }}</p>
+            </div>
+        </div>
+
+        <!-- Columna 2: Bloque 2 -->
+        <div class="flex flex-col">
+            <div
+                class="p-4 border rounded-lg w-64"
+                [ngClass]="{
+                    'bg-orange-200': bloques[1]?.estado === 'pendiente',
+                    'bg-green-200': bloques[1]?.estado === 'completado',
+                    'bg-red-200': bloques[1]?.estado === 'error'
+                }"
+            >
+                <h4 class="font-semibold">{{ bloques[1]?.nombre }}</h4>
+                <p class="text-sm">{{ bloques[1]?.mensaje }}</p>
+            </div>
+        </div>
+
+        <!-- Columna 3: Bloque 3 y Bloque 4 (apilados verticalmente) -->
+        <div class="flex flex-col space-y-4">
+            <div
+                class="p-4 border rounded-lg w-64"
+                [ngClass]="{
+                    'bg-orange-200': bloques[2]?.estado === 'pendiente',
+                    'bg-green-200': bloques[2]?.estado === 'completado',
+                    'bg-red-200': bloques[2]?.estado === 'error'
+                }"
+            >
+                <h4 class="font-semibold">{{ bloques[2]?.nombre }}</h4>
+                <p class="text-sm">{{ bloques[2]?.mensaje }}</p>
+            </div>
+            <div
+                class="p-4 border rounded-lg w-64"
+                [ngClass]="{
+                    'bg-orange-200': bloques[3]?.estado === 'pendiente',
+                    'bg-green-200': bloques[3]?.estado === 'completado',
+                    'bg-red-200': bloques[3]?.estado === 'error'
+                }"
+            >
+                <h4 class="font-semibold">{{ bloques[3]?.nombre }}</h4>
+                <p class="text-sm">{{ bloques[3]?.mensaje }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje cuando no hay cuenta seleccionada -->
+    <div *ngIf="cuentaSeleccionada === null" class="flex items-center justify-center w-full">
+        <p class="text-gray-500">Seleccione un número de cuenta para ver el flujo.</p>
+    </div>
+</div>

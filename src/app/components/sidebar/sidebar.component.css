@@ -1,0 +1,75 @@
+/* Sidebar cerrado */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 0;
+    background-color: #2c3e50;
+    color: white;
+    overflow-x: hidden;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* Sidebar abierto */
+  .sidebar.open {
+    width: 25%;
+    padding: 20px;
+  }
+  
+  /* Botón para cerrar */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Botón para abrir */
+  .open-btn {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Menú */
+  .menu-item {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #34495e;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .menu-item:hover {
+    background-color: #1abc9c;
+  }
+  
+  /* Submenú */
+  .submenu {
+    margin-left: 15px;
+  }
+  
+  .submenu-item {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #3b4d63;
+    margin: 3px 0;
+    border-radius: 5px;
+  }
+  
+  .submenu-item:hover {
+    background-color: #16a085;
+  }
+  

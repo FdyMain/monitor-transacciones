@@ -1,0 +1,38 @@
+<div class="flex flex-col w-full h-full bg-gray-100">
+
+    <!-- Pestañas -->
+    <div class="flex p-8 border-b border-gray-300 space-x-10 2xl:space-x-28">
+        <button
+            (click)="setActiveTab('batch-search')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'batch-search',
+                'text-gray-500': activeTab !== 'batch-search'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Buscar por lote
+        </button>
+        <button
+            (click)="setActiveTab('simple-search')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'simple-search',
+                'text-gray-500': activeTab !== 'simple-search'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Búsqueda simple
+        </button>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="flex flex-col p-5 mt-3">
+        <ng-container *ngIf="activeTab === 'batch-search'">
+            <app-batch-search></app-batch-search>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'simple-search'">
+            <app-simple-search></app-simple-search>
+        </ng-container>
+    </div>
+
+    
+</div>
