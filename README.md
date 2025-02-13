@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Instalations
+
+- Angular 18
+- angular materials "npm install @angular/material@18 @angular/cdk@18"
+- tailwind 3.14 > "read docs"
+- tailwind form (plugin) "npm list @tailwindcss/forms"

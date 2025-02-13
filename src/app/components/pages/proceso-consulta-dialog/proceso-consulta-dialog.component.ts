@@ -7,8 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-proceso-consulta-dialog',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './proceso-consulta-dialog.component.html',
-  styleUrl: './proceso-consulta-dialog.component.css',
+  templateUrl: './proceso-consulta-dialog.component.html'
 })
 export class ProcesoConsultaDialogComponent {
   numerosCuenta: number[] = []; // Inicializar como un array vacío
@@ -30,8 +29,8 @@ export class ProcesoConsultaDialogComponent {
       this.flujosPorCuenta[cuenta] = {
         iniciado: false, // Indica si el flujo ya ha sido iniciado
         bloques: [
-          { nombre: 'HOST', estado: 'pendiente', mensaje: 'En espera...' },
-          { nombre: 'TS', estado: 'pendiente', mensaje: 'En espera...' },
+          { nombre: 'Autra - Capa - Línea', estado: 'pendiente', mensaje: 'En espera...' },
+          { nombre: 'TS (Batch)', estado: 'pendiente', mensaje: 'En espera...' },
           { nombre: 'ODS', estado: 'pendiente', mensaje: 'En espera...' },
           { nombre: 'CONTABILIDAD', estado: 'pendiente', mensaje: 'En espera...' },
         ],
@@ -80,13 +79,13 @@ export class ProcesoConsultaDialogComponent {
     const bloques = this.flujosPorCuenta[cuenta].bloques;
 
     bloques[0].estado = 'pendiente';
-    bloques[0].mensaje = 'Consultando API...';
+    bloques[0].mensaje = 'Consultando...';
 
     // Simular API para Bloque_1
     this.apiService.consultarApi(cuenta).subscribe({
       next: (response) => {
         bloques[0].estado = 'completado';
-        bloques[0].mensaje = 'API completada (200)';
+        bloques[0].mensaje = 'Consulta exitosa';
         this.iniciarBloque2(cuenta);
       },
       error: (error) => {
@@ -101,13 +100,13 @@ export class ProcesoConsultaDialogComponent {
     const bloques = this.flujosPorCuenta[cuenta].bloques;
 
     bloques[1].estado = 'pendiente';
-    bloques[1].mensaje = 'Consultando API...';
+    bloques[1].mensaje = 'Consultando...';
 
     // Simular API para Bloque_2
     this.apiService.consultarApi2(cuenta).subscribe({
       next: (response) => {
         bloques[1].estado = 'completado';
-        bloques[1].mensaje = 'API completada (200)';
+        bloques[1].mensaje = 'Consulta exitosa';
         this.iniciarBloque3y4(cuenta);
       },
       error: (error) => {
@@ -122,15 +121,15 @@ export class ProcesoConsultaDialogComponent {
     const bloques = this.flujosPorCuenta[cuenta].bloques;
 
     bloques[2].estado = 'pendiente';
-    bloques[2].mensaje = 'Consultando API...';
+    bloques[2].mensaje = 'Consultando...';
     bloques[3].estado = 'pendiente';
-    bloques[3].mensaje = 'Consultando API...';
+    bloques[3].mensaje = 'Consultando...';
 
     // Simular API para Bloque_3
     this.apiService.consultarApi3(cuenta).subscribe({
       next: (response) => {
         bloques[2].estado = 'completado';
-        bloques[2].mensaje = 'API completada (200)';
+        bloques[2].mensaje = 'Consulta exitosa';
       },
       error: (error) => {
         bloques[2].estado = 'error';
@@ -142,7 +141,7 @@ export class ProcesoConsultaDialogComponent {
     this.apiService.consultarApi4(cuenta).subscribe({
       next: (response) => {
         bloques[3].estado = 'completado';
-        bloques[3].mensaje = 'API completada (200)';
+        bloques[3].mensaje = 'Consulta exitosa';
       },
       error: (error) => {
         bloques[3].estado = 'error';
