@@ -1,0 +1,59 @@
+<div class="p-6 w-full flex flex-col">
+  <!-- Formulario de búsqueda -->
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="space-y-4">
+    <div>
+      <label for="networkUser" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+        Usuario de red
+      </label>
+      <input
+        id="networkUser"
+        type="text"
+        formControlName="networkUser"
+        class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <span *ngIf="searchForm.get('networkUser')?.invalid && searchForm.get('networkUser')?.touched" class="text-red-500 text-sm">
+        Este campo es obligatorio
+      </span>
+    </div>
+    <div class="mt-4">
+      <button
+        type="submit"
+        class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+      >
+        Buscar
+      </button>
+    </div>
+  </form>
+
+  <!-- Datos del usuario (si se encuentra) -->
+  <div *ngIf="userFound" class="mt-6 p-4 border border-gray-300 rounded-md shadow-sm">
+    <p><strong>Primer Nombre:</strong> {{ user?.firstName }}</p>
+    <p><strong>Segundo Nombre:</strong> {{ user?.middleName }}</p>
+    <p><strong>Primer Apellido:</strong> {{ user?.lastName }}</p>
+    <p><strong>Segundo Apellido:</strong> {{ user?.secondLastName }}</p>
+    <p><strong>Rol:</strong> {{ user?.role }}</p>
+
+    <div class="mt-4">
+      <button
+        class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
+        (click)="confirmDelete()"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+
+  <!-- Diálogo de confirmación -->
+  <div *ngIf="showConfirmDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-md shadow-lg w-96">
+      <p class="text-lg font-semibold text-gray-900">¿Está seguro que quiere eliminar el usuario?</p>
+      <div class="mt-4 flex justify-end space-x-4">
+        <button class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400" (click)="cancelDelete()">No</button>
+        <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" (click)="onDelete()">Sí</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup de notificación -->
+  <app-notification-popup></app-notification-popup>
+</div>

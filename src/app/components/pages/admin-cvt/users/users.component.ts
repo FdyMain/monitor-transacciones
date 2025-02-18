@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { CreateComponent } from "./create-user/create.component";
-import { UpdateComponent } from "./update-user/update.component";
-import { DeleteComponent } from "./delete-user/delete.component";
+import { CreateUserComponent } from "./create-user/create-user.component";
+import { UpdateUserComponent } from "./update-user/update-user.component";
+import { DeleteUserComponent } from "./delete-user/delete-user.component";
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
     CommonModule,
-    CreateComponent,
-    UpdateComponent,
-    DeleteComponent
+    CreateUserComponent,
+    UpdateUserComponent,
+    DeleteUserComponent
 ],
   templateUrl: './users.component.html'
 })

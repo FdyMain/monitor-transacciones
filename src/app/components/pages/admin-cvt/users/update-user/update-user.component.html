@@ -1,0 +1,112 @@
+<div class="p-6 w-full flex flex-col">
+    <!-- Formulario de búsqueda -->
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="space-y-4">
+      <div>
+        <label for="networkUser" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Usuario de red
+        </label>
+        <input
+          id="networkUser"
+          type="text"
+          formControlName="networkUser"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <span *ngIf="searchForm.get('networkUser')?.invalid" class="text-red-500 text-sm">
+            Este campo es obligatorio
+        </span>
+      </div>
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+        >
+          Buscar
+        </button>
+      </div>
+    </form>
+  
+    <!-- Formulario de actualización, se muestra solo si se encuentra el usuario -->
+    <form *ngIf="userFound" [formGroup]="userForm" (ngSubmit)="onUpdate()" class="space-y-4 mt-6">
+      <!-- Primera fila -->
+      <div class="flex flex-row space-x-4">
+        <div class="flex-1">
+          <label for="firstName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+            Primer nombre
+          </label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div class="flex-1">
+          <label for="middleName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+            Segundo nombre
+          </label>
+          <input
+            id="middleName"
+            type="text"
+            formControlName="middleName"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+  
+      <!-- Segunda fila -->
+      <div class="flex flex-row space-x-4">
+        <div class="flex-1">
+          <label for="lastName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+            Primer apellido
+          </label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div class="flex-1">
+          <label for="secondLastName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+            Segundo apellido
+          </label>
+          <input
+            id="secondLastName"
+            type="text"
+            formControlName="secondLastName"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+  
+      <!-- Fila de rol -->
+      <div>
+        <label for="role" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Asignar rol
+        </label>
+        <select
+          id="role"
+          formControlName="role"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="Rol_Uno">Rol_Uno</option>
+          <option value="Rol_Dos">Rol_Dos</option>
+        </select>
+      </div>
+  
+      <!-- Botón de actualizar -->
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer"
+        >
+          Actualizar
+        </button>
+      </div>
+    </form>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+
+
+  </div>

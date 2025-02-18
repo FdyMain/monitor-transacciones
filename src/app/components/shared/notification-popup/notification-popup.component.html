@@ -1,0 +1,10 @@
+<div
+  *ngIf="show$ | async"
+  [ngClass]="{
+    'bg-green-500': (status$ | async) === 'success',
+    'bg-red-500': (status$ | async) === 'error'
+  }"
+  class="fixed top-4 right-4 p-4 text-white rounded-md shadow-lg transition-opacity duration-300"
+>
+  {{ message$ | async }}
+</div>
