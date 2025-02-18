@@ -1,0 +1,51 @@
+<div class="flex flex-col w-full h-full bg-gray-100">
+
+    <!-- Pestañas -->
+    <div class="flex p-8 border-b border-gray-300 space-x-10 2xl:space-x-28">
+        <button
+            (click)="setActiveTab('createRol')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'createRol',
+                'text-gray-500': activeTab !== 'createRol'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Crear rol
+        </button>
+        <button
+            (click)="setActiveTab('updateRol')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'updateRol',
+                'text-gray-500': activeTab !== 'updateRol'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Actualizar rol
+        </button>
+        <button
+            (click)="setActiveTab('deleteRol')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'deleteRol',
+                'text-gray-500': activeTab !== 'deleteRol'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Borrar rol
+        </button>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="flex flex-col p-5 mt-3">
+        <ng-container *ngIf="activeTab === 'createRol'">
+            <app-create-rol></app-create-rol>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'updateRol'">
+            <app-update-rol></app-update-rol>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'deleteRol'">
+            <app-delete-rol></app-delete-rol>
+        </ng-container>
+    </div>
+
+    
+</div>

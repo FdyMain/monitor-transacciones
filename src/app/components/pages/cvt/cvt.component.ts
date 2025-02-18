@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { BatchSearchComponent } from '../batch-search/batch-search.component'; // Importa BatchSearchComponent
-import { BatchSimpleComponent } from '../simple-search/simple-search.component'; // Importa BatchSimpleComponent
+import { BatchSearchComponent } from './batch-search/batch-search.component'; // Importa BatchSearchComponent
+import { BatchSimpleComponent } from './simple-search/simple-search.component'; // Importa BatchSimpleComponent
 
 @Component({
   selector: 'app-cvt',
@@ -20,6 +20,4 @@ export class CvtComponent {
   setActiveTab(tab: 'batch-search' | 'simple-search'): void {
     this.activeTab = tab;
   }
-
-  
 }

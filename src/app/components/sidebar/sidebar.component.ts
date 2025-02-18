@@ -13,6 +13,7 @@ export class SidebarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
   isCollapsed = false;
   showAdminOptions = false;
+  showGestorOptions = false;
   user = '@user'; // Propiedad user
 
   constructor(private readonly router: Router) {} 
@@ -24,6 +25,10 @@ export class SidebarComponent {
 
   toggleAdminOptions(): void {
     this.showAdminOptions = !this.showAdminOptions;
+  }
+
+  toggleGestorOptions(): void {
+    this.showGestorOptions = !this.showGestorOptions;
   }
 
   logout(): void {

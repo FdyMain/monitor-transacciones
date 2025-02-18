@@ -33,10 +33,63 @@
       </p>
     </div>
 
-    <!-- Opción "Administrador CVT" -->
+
+    <!-- Opción "Admin" -->
     <div class="mb-6">
       <button
         (click)="toggleAdminOptions()"
+        class="flex items-center w-full text-left focus:outline-none cursor-pointer"
+        aria-label="Toggle admin options"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 26 26"><path fill="currentColor" d="M16.563 15.9c-.159-.052-1.164-.505-.536-2.414h-.009c1.637-1.686 2.888-4.399 2.888-7.07c0-4.107-2.731-6.26-5.905-6.26c-3.176 0-5.892 2.152-5.892 6.26c0 2.682 1.244 5.406 2.891 7.088c.642 1.684-.506 2.309-.746 2.396c-3.324 1.203-7.224 3.394-7.224 5.557v.811c0 2.947 5.714 3.617 11.002 3.617c5.296 0 10.938-.67 10.938-3.617v-.811c0-2.228-3.919-4.402-7.407-5.557m-5.516 8.709c0-2.549 1.623-5.99 1.623-5.99l-1.123-.881c0-.842 1.453-1.723 1.453-1.723s1.449.895 1.449 1.723l-1.119.881s1.623 3.428 1.623 6.018c0 .406-3.906.312-3.906-.028"/></svg>
+        <span class="ml-3 text-base 2xl:text-lg font-medium underline">
+          Administrador
+        </span>
+      </button>
+
+      <!-- Opciones desplegables de "Admin CVT" -->
+      @if (showAdminOptions) {
+        <div class="ml-6 mt-1">
+            <a [routerLink]="['/users']" class="flex flex-row items-center justify-start hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+                <g fill="none" stroke-linejoin="round" stroke-width="4">
+                  <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                  <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                  <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+                </g>
+              </svg>
+              <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">
+                Usuarios
+              </p>            
+            </a>         
+          <a [routerLink]="['/roles']" class="flex flex-row items-center hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+              <g fill="none" stroke-linejoin="round" stroke-width="4">
+                <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+              </g>
+            </svg>
+            <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">Roles</p>
+          </a>
+          <a [routerLink]="['/modules']" class="flex flex-row items-center hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
+              <g fill="none" stroke-linejoin="round" stroke-width="4">
+                <path fill="#028930" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/>
+                <path stroke="#fff" stroke-linecap="round" d="M24 16V32"/>
+                <path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/>
+              </g>
+            </svg>
+            <p class="pl-3 pt-3 text-sm 2xl:text-base font-normal leading-none">Módulo</p>
+          </a>
+        </div>
+      }
+    </div>
+    
+    <!-- Opción "Administrador CVT" -->
+    <div class="mb-6">
+      <button
+        (click)="toggleGestorOptions()"
         class="flex items-center w-full text-left focus:outline-none cursor-pointer"
         aria-label="Toggle admin options"
       >
@@ -45,12 +98,12 @@
           <path fill="#ffca28" d="M40 12H8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4"/>
         </svg>
         <span class="ml-3 text-base 2xl:text-lg font-medium underline">
-          Administrador CVT
+          Gestor CVT
         </span>
       </button>
 
-      <!-- Opciones desplegables de "Administrador CVT" -->
-      @if (showAdminOptions) {
+      <!-- Opciones desplegables de "Gestor CVT" -->
+      @if (showGestorOptions) {
         <div class="ml-6 mt-1">
             <a href="#" class="flex flex-row items-center justify-start hover:bg-gray-700">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">

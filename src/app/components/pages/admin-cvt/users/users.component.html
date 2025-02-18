@@ -1,0 +1,51 @@
+<div class="flex flex-col w-full h-full bg-gray-100">
+
+    <!-- Pestañas -->
+    <div class="flex p-8 border-b border-gray-300 space-x-10 2xl:space-x-28">
+        <button
+            (click)="setActiveTab('createUser')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'createUser',
+                'text-gray-500': activeTab !== 'createUser'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Crear usuario
+        </button>
+        <button
+            (click)="setActiveTab('updateUser')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'updateUser',
+                'text-gray-500': activeTab !== 'updateUser'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Actualizar usuario
+        </button>
+        <button
+            (click)="setActiveTab('deleteUser')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'deleteUser',
+                'text-gray-500': activeTab !== 'deleteUser'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Borrar usuario
+        </button>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="flex flex-col p-5 mt-3">
+        <ng-container *ngIf="activeTab === 'createUser'">
+            <app-create-user></app-create-user>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'updateUser'">
+            <app-update-user></app-update-user>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'deleteUser'">
+            <app-delete-user></app-delete-user>
+        </ng-container>
+    </div>
+
+    
+</div>

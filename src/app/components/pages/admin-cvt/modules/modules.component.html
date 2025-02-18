@@ -1,0 +1,51 @@
+<div class="flex flex-col w-full h-full bg-gray-100">
+
+    <!-- Pestañas -->
+    <div class="flex p-8 border-b border-gray-300 space-x-10 2xl:space-x-28">
+        <button
+            (click)="setActiveTab('createModule')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'createModule',
+                'text-gray-500': activeTab !== 'createModule'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Crear módulo
+        </button>
+        <button
+            (click)="setActiveTab('updateModule')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'updateModule',
+                'text-gray-500': activeTab !== 'updateModule'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Actualizar módulo
+        </button>
+        <button
+            (click)="setActiveTab('deleteModule')"
+            [ngClass]="{
+                'border-b-4 border-blue-500': activeTab === 'deleteModule',
+                'text-gray-500': activeTab !== 'deleteModule'
+            }"
+            class="text-base 2xl:text-lg font-semibold focus:outline-none cursor-pointer"
+        >
+            Borrar módulo
+        </button>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div class="flex flex-col p-5 mt-3">
+        <ng-container *ngIf="activeTab === 'createModule'">
+            <app-create-module></app-create-module>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'updateModule'">
+            <app-update-module></app-update-module>
+        </ng-container>
+        <ng-container *ngIf="activeTab === 'deleteModule'">
+            <app-delete-module></app-delete-module>
+        </ng-container>
+    </div>
+
+    
+</div>
