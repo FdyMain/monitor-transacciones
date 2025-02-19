@@ -1,1 +1,35 @@
-<p>create-module works!</p>
+<div class="p-6 w-full flex flex-col">
+    <!-- Formulario para crear un módulo -->
+    <form [formGroup]="createModuleForm" (ngSubmit)="onCreateModule()" class="space-y-4">
+      <div>
+        <label for="moduleName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Nombre del Módulo
+        </label>
+        <input
+          id="moduleName"
+          type="text"
+          formControlName="moduleName"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <!-- Mensajes de validación -->
+        <span *ngIf="createModuleForm.get('moduleName')?.errors?.['required'] && createModuleForm.get('moduleName')?.touched" class="text-red-500 text-sm">
+          El nombre del módulo es obligatorio.
+        </span>
+        <span *ngIf="createModuleForm.get('moduleName')?.errors?.['minlength'] && createModuleForm.get('moduleName')?.touched" class="text-red-500 text-sm">
+          El nombre del módulo debe tener más de 3 caracteres.
+        </span>
+      </div>
+  
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="p-2 w-40 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+        >
+          Crear Módulo
+        </button>
+      </div>
+    </form>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+  </div>
