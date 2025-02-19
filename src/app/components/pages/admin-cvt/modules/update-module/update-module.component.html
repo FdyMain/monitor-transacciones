@@ -1,1 +1,61 @@
-<p>update-module works!</p>
+<div class="p-6 w-full flex flex-col">
+    <!-- Tabla de módulos disponibles -->
+    <div class="mt-6">
+      <table class="w-full border border-gray-300 rounded-md shadow-sm">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2 text-left">Nombre del Módulo</th>
+            <th class="p-2 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let module of modules" class="border-t">
+            <td class="p-2">
+              <!-- Mostrar campo de edición si el módulo está en modo edición -->
+              <input
+                *ngIf="editingModule === module"
+                [(ngModel)]="updatedModuleName"
+                class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <!-- Mostrar nombre del módulo si no está en modo edición -->
+              <span *ngIf="editingModule !== module">{{ module.name }}</span>
+            </td>
+            <td class="p-2 text-center space-x-2">
+              <!-- Ícono de lápiz para editar -->
+              <button (click)="enableEdit(module)" class="text-blue-500 hover:text-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34M18 2l4 4l-8 8H8v-4l8-8z"/>
+                </svg>
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Botón para actualizar el módulo -->
+    <div class="mt-6">
+      <button
+        type="button"
+        (click)="onUpdate()"
+        class="p-2 w-40 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+      >
+        Actualizar Módulo
+      </button>
+    </div>
+  
+    <!-- Diálogo de confirmación para eliminar -->
+    <div *ngIf="showConfirmDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white p-6 rounded-md shadow-lg w-96">
+        <p class="text-lg font-semibold text-gray-900">¿Está seguro que quiere eliminar el módulo?</p>
+        <div class="mt-4 flex justify-end space-x-4">
+          <button class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400" (click)="cancelDelete()">Cancelar</button>
+          <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" (click)="onDelete()">Sí</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+  </div>
