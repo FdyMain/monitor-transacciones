@@ -1,1 +1,39 @@
-<p>delete-rol works!</p>
+<div class="p-6 w-full flex flex-col">
+    <!-- Tabla de roles disponibles -->
+    <div class="mt-6">
+      <table class="w-full border border-gray-300 rounded-md shadow-sm">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2 text-left">Nombre del Rol</th>
+            <th class="p-2 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let role of roles" class="border-t">
+            <td class="p-2">{{ role.name }}</td>
+            <td class="p-2 text-center">
+              <button (click)="confirmDelete(role)" class="text-red-500 hover:text-red-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 11v6m-4-6v6M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M4 7h16M7 7l2-4h6l2 4"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Diálogo de confirmación -->
+    <div *ngIf="showConfirmDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-white p-6 rounded-md shadow-lg w-96">
+        <p class="text-lg font-semibold text-gray-900">¿Está seguro que quiere eliminar el rol?</p>
+        <div class="mt-4 flex justify-end space-x-4">
+          <button class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400" (click)="cancelDelete()">Cancelar</button>
+          <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" (click)="onDelete()">Sí</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+</div>

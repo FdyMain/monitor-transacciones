@@ -1,1 +1,84 @@
-<p>create-rol works!</p>
+<div class="p-6 w-full flex flex-col">
+    <!-- Formulario de creación de rol -->
+    <form [formGroup]="rolForm" class="space-y-4">
+      <!-- Nombre del Rol -->
+      <div>
+        <label for="rolName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Nombre del Rol
+        </label>
+        <input
+          id="rolName"
+          type="text"
+          formControlName="rolName"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <span *ngIf="rolForm.get('rolName')?.errors?.['required'] && rolForm.get('rolName')?.touched" class="text-red-500 text-sm">
+          Este campo es obligatorio
+        </span>
+        <span *ngIf="rolForm.get('rolName')?.errors?.['minlength'] && rolForm.get('rolName')?.touched" class="text-red-500 text-sm">
+          Debe tener más de 3 caracteres
+        </span>
+      </div>
+  
+      <!-- Select de módulos -->
+      <div>
+        <label for="selectedModule" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Agregar módulo
+        </label>
+        <select
+          id="selectedModule"
+          formControlName="selectedModule"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option *ngFor="let modulo of availableModules" [value]="modulo">
+            {{ modulo }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Botón Agregar -->
+      <div class="mt-4">
+        <button
+          type="button"
+          (click)="addModule()"
+          class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer"
+        >
+          Agregar
+        </button>
+      </div>
+    </form>
+  
+    <!-- Tabla de módulos agregados -->
+    <div class="mt-6">
+      <table class="w-full border border-gray-300 rounded-md shadow-sm">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2 text-left">Módulos Agregados</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let modulo of addedModules" class="border-t">
+            <td class="p-2">{{ modulo }}</td>
+          </tr>
+          <tr *ngIf="addedModules.length === 0">
+            <td class="p-2 text-center text-gray-500">No hay módulos agregados</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Botón para crear rol -->
+    <div class="mt-6">
+      <button
+        type="button"
+        (click)="onCreateRole()"
+        class="p-2 w-40 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+      >
+        Crear Rol
+      </button>
+    </div>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+  </div>
+  

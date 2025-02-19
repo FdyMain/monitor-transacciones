@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-create-module',
   standalone: true,
   imports: [],
-  templateUrl: './create-module.component.html',
-  styleUrl: './create-module.component.css'
+  templateUrl: './create-module.component.html'
 })
 export class CreateModuleComponent {
 

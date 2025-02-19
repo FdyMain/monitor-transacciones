@@ -1,1 +1,94 @@
-<p>update-rol works!</p>
+<div class="p-6 w-full flex flex-col">
+    <!-- Formulario de búsqueda de rol -->
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="space-y-4">
+      <div>
+        <label for="rolName" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+          Nombre del Rol
+        </label>
+        <input
+          id="rolName"
+          type="text"
+          formControlName="rolName"
+          class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+  
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="p-2 w-40 h-8 2xl:h-10 text-sm 2xl:text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+        >
+          Buscar Rol
+        </button>
+      </div>
+    </form>
+  
+    <!-- Sección de actualización del rol -->
+    <div *ngIf="roleFound" class="mt-6">
+      <!-- Select para agregar módulos -->
+      <form [formGroup]="updateForm">
+        <div>
+          <label for="modulosDisponibles" class="block text-Gray_Carbon_900 text-sm 2xl:text-base font-normal">
+            Agregar módulo
+          </label>
+          <select
+            id="modulosDisponibles"
+            formControlName="selectedModule"
+            class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option *ngFor="let modulo of availableModules" [value]="modulo">
+              {{ modulo }}
+            </option>
+          </select>
+  
+          <div class="mt-4">
+            <button
+              type="button"
+              (click)="addModule()"
+              class="p-2 w-32 h-8 2xl:h-10 text-sm 2xl:text-base bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </form>
+  
+      <!-- Tabla de módulos agregados -->
+      <div class="mt-6">
+        <table class="w-full border border-gray-300 rounded-md shadow-sm">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="p-2 text-left">Módulos Asociados</th>
+              <th class="p-2 text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let modulo of addedModules" class="border-t">
+              <td class="p-2">{{ modulo }}</td>
+              <td class="p-2 text-center">
+                <button (click)="removeModule(modulo)" class="text-red-500 hover:text-red-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 11v6m-4-6v6M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M4 7h16M7 7l2-4h6l2 4"/>
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Botón para actualizar rol -->
+      <div class="mt-6">
+        <button
+          type="button"
+          (click)="onUpdateRole()"
+          class="p-2 w-40 h-8 2xl:h-10 text-sm 2xl:text-base bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 cursor-pointer"
+        >
+          Actualizar Rol
+        </button>
+      </div>
+    </div>
+  
+    <!-- Popup de notificación -->
+    <app-notification-popup></app-notification-popup>
+  </div>

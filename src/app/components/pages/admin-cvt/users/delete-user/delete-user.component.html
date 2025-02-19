@@ -10,10 +10,10 @@
         type="text"
         formControlName="networkUser"
         class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <span *ngIf="searchForm.get('networkUser')?.invalid && searchForm.get('networkUser')?.touched" class="text-red-500 text-sm">
+      />      
+      <span *ngIf="searchForm.get('networkUser')?.invalid" class="text-red-500 text-sm">
         Este campo es obligatorio
-      </span>
+    </span>
     </div>
     <div class="mt-4">
       <button
